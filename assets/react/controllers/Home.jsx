@@ -12,7 +12,7 @@ export default function Home({ companies }) {
             Hello React!
         </h2>
         
-        <input value={search} onChange={e => setSearch(e.target.value)} />
+        <input className='rounded' type="text" value={search} onChange={e => setSearch(e.target.value)} />
         <ul>
             {companies.filter(company => company.toLowerCase().includes(search.toLowerCase())).map(company => <li>{company}</li>)}
         </ul>

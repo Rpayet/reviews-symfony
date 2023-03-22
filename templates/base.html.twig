@@ -14,6 +14,31 @@
         {% endblock %}
     </head>
     <body>
-        {% block body %}{% endblock %}
+
+        <header class="bg-slate-600 text-slate-200 py-3">
+
+            <div class="max-w-5xl mx-auto">
+                <div class="flex justify-around items-center">
+
+                    <h1 class="text-xl font-bold"><a href="{{ path('app_home')}}">Reviews</a></h1>
+
+                    <nav class="flex gap-6">
+
+                        <a href="{{ path('app_home')}}">Accueil</a>
+                        <a href="{{ path('app_login')}}">Connexion</a>
+
+                    </nav>
+
+                </div>
+            </div>
+
+        </header>
+        <div class="max-w-5xl mx-auto">
+            {% block body %}{% endblock %}
+        </div>
+
+        <footer>
+            <p class="text-center">Tous droits réservés {{ 'now' | date('Y') }}</p>
+        </footer>
     </body>
 </html>
