@@ -1,0 +1,18 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Review - {{ parent()}}{% endblock %}
+
+{% block body %}
+
+    <div class="max-w-3xl mx-auto border my-4 py-10 px-20">
+
+        {{ form_start(form) }}
+
+            {{ form_widget(form) }}
+
+            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded text-lg block w-full">Envoyer</button>
+
+        {{ form_end(form) }}
+
+    </div>
+{% endblock %}
