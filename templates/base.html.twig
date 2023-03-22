@@ -25,8 +25,20 @@
                     <nav class="flex gap-6">
 
                         <a href="{{ path('app_home')}}">Accueil</a>
-                        <a href="{{ path('app_login')}}">Connexion</a>
 
+                        {% if app.user %}
+
+                            <span>{{ app.user.name }}</span>
+                            <a class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded text-sm" href="{{path('app_logout')}}">Déconnexion</a>
+
+                        {% else %}
+
+                            <a href="{{ path('app_login')}}">Connexion</a>
+                            <a href="{{ path('app_register')}}">Inscription</a>
+
+                        {% endif %}
+                        
+                    
                     </nav>
 
                 </div>
