@@ -13,7 +13,7 @@
 
             {% if app.user %}
                 <div class="mb-6 text-center">
-                    Bonjour {{ app.user.name }}, <a class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded text-sm" href="{{ path('app_logout') }}">Logout</a>
+                    Bonjour {{ app.user.name }} <a class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded text-sm" href="{{ path('app_logout') }}">Logout</a>
                 </div>
             {% endif %}
 
