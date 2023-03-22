@@ -8,15 +8,21 @@
     <h1 class="text-3xl ">Site d'avis d'entreprises</h1>
     <div {{ react_component('Home', {companies: companies}) }}></div>
 
-    <a href="">Laisser un avis</a>
+    <a class="bg-blue-500 hover:bg-blue-700 text-white font-bold mb-6 py-1 px-2 m-auto rounded text-lg block w-1/2" href="{{ path('app_review_new')}}">Laisser un avis</a>
 
-    <ul>
-        <li>
-            <a href="">AVIS</a>
-        </li>
+    <ul class="divide-y-2 space-y-6 my-4">
+        {% for review in reviews %}
+            <li class="w-1/2 m-auto border py-4">
+                
+                <a href="#" class="flex gap-4">
+                    <strong>{{ review.user.name }}</strong>
+                    <span>{{ review.content }}</span>
+                </a>
+            </li>
+        {% endfor %}
     </ul>
 
-    
+
 </div>
 
 {% endblock %}
