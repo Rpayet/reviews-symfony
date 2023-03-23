@@ -14,9 +14,13 @@
         {% for review in reviews %}
             <li class="w-1/2 m-auto border py-4">
                 
-                <a href="#" class="flex gap-4">
+                <a href="#" class="flex gap-4 items-center">
                     <strong>{{ review.user.name }}</strong>
                     <span>{{ review.content }}</span>
+                    {% if is_granted('ROLE_USER') and app.user == review.user %}
+                        <a class="bg-red-400 hover:bg-red-600 rounded px-3 py-1 text-xs text-white" href="{{ path('app_review_delete', { id: review.id }) }}">- X -</a>
+                    {% endif %}
+                    
                 </a>
             </li>
         {% endfor %}

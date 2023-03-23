@@ -6,8 +6,9 @@ use App\Entity\Review;
 use App\Form\ReviewType;
 use App\Repository\ReviewRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request as HttpFoundationRequest;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
@@ -25,7 +26,7 @@ class HomeController extends AbstractController
 
     #[Route('/review/new', name: 'app_review_new')]
     #[IsGranted('ROLE_USER')]
-    public function new(HttpFoundationRequest $request, EntityManagerInterface $manager, ReviewRepository $repository)
+    public function new(Request $request, EntityManagerInterface $manager, ReviewRepository $repository)
     {
 
         $review = New Review();
@@ -49,5 +50,14 @@ class HomeController extends AbstractController
             'form' => $form,
         ]);
 
+    }
+
+    #[Route('/review/delete/{id}', name: 'app_review_delete')]
+    #[Security("is_granted('ROLE_USER') and user === review.getUser()")]
+    public function delete(Review $review, EntityManagerInterface $manager)
+    {
+        $manager->remove($review);
+        $manager->flush();
+        return $this->redirectToRoute('app_home');
     }
 }
